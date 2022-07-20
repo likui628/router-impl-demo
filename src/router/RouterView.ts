@@ -1,19 +1,14 @@
 import { defineComponent, h } from "vue"
+import Home from "../pages/Home.vue"
 
 export const RouterView = defineComponent({
   name: 'RouterView',
   setup(props, { slots }) {
 
-    console.log(slots)
     return () => {
+      const component = Home/* TODO */
 
-      return h(
-        'div',
-        {
-          //todo
-        },
-        "router-view"
-      )
+      return h(component)
     }
   },
 })

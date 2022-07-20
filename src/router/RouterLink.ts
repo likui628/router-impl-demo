@@ -10,11 +10,11 @@ export const RouterLink = defineComponent({
   },
   setup(props, { slots }) {
     return () => {
-
       return h(
         'a',
         {
-          //todo
+          href: `#${props.to}`,
+          onClick: () => {/*todo*/ }
         },
         slots.default && slots.default()
       )
