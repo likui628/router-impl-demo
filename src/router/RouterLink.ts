@@ -1,4 +1,5 @@
-import { defineComponent, h } from "vue"
+import { defineComponent, h, inject } from "vue"
+import { routerKey } from "./injectionSymbols"
 
 export const RouterLink = defineComponent({
   name: 'RouterLink',
@@ -9,15 +10,14 @@ export const RouterLink = defineComponent({
     },
   },
   setup(props, { slots }) {
-    return () => {
-      return h(
-        'a',
-        {
-          href: `#${props.to}`,
-          onClick: () => {/*todo*/ }
-        },
-        slots.default && slots.default()
-      )
-    }
+    const router = inject(routerKey)!
+    return () => h(
+      'a',
+      {
+        href: `#${props.to}`,
+        onClick: () => { router.push(props.to) }
+      },
+      slots.default && slots.default()
+    )
   },
 })

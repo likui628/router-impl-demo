@@ -4,11 +4,6 @@ export type RouteComponent = Component | DefineComponent
 
 export type RouteLocationRaw = string;
 
-export type RouteLocation = {
-    href: string;
-    fullPath: string
-}
-
 export interface RouteRecordRaw {
     path: RouteLocationRaw;
     component: RouteComponent;
@@ -20,7 +15,7 @@ export interface RouterOptions {
 }
 
 export interface Router {
-    resolve(to: RouteLocationRaw): RouteLocation
+    options: RouterOptions
     push(to: RouteLocationRaw): Promise<any>
     install(app: App): void
 }

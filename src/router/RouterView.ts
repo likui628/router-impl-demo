@@ -1,14 +1,17 @@
-import { defineComponent, h } from "vue"
-import Home from "../pages/Home.vue"
+import { defineComponent, h, inject, watch } from "vue"
+import { routeLocationKey } from "./injectionSymbols"
 
 export const RouterView = defineComponent({
   name: 'RouterView',
   setup(props, { slots }) {
+    const currentRoute = inject(routeLocationKey)
 
     return () => {
-      const component = Home/* TODO */
-
-      return h(component)
+      if (currentRoute?.value
+        && currentRoute.value.component) {
+        return h(currentRoute.value.component)
+      }
+      return h('div')
     }
   },
 })
